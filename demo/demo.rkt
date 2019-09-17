@@ -5,7 +5,7 @@
 
 (define frame
   (new frame% 
-       [label "test"]   
+       [label "Demo Browser"]   
        [width 800] 
        [height 600] 
        [x 100] 
