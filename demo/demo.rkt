@@ -26,6 +26,9 @@
 (define (go-back button event)
   (send web-view go-back))
 
+(define (reload button event)
+  (send web-view reload))
+
 (define address-bar
   (new text-field%
        [parent toolbar]
@@ -50,6 +53,12 @@
        [label ">"]
        [callback go-forward]))
 
+(define reload-button
+  (new button%
+       [parent toolbar]
+       [label "reload"]
+       [callback reload]))
+
 (define panel
   (new panel%
        [parent frame]))
@@ -64,4 +73,4 @@
        [parent panel]))
 
 (send web-view set-url "https://racket-lang.org")
-
+(send web-view get-url)

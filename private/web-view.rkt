@@ -46,6 +46,9 @@
 
     (define/public (go-back)
       (send webview go-back))
+
+    (define/public (reload)
+      (send webview reload))
    
     ))
 

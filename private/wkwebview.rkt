@@ -2,6 +2,7 @@
 (require framework)
 (require ffi/unsafe)
 (require ffi/unsafe/objc)
+ (require ffi/unsafe/nsstring)
 (require racket/class)
 
 (ffi-lib "/System/Library/Frameworks/WebKit.framework/WebKit")
@@ -69,8 +70,13 @@
 
     (object_setInstanceVariable webview "navigationDelegate" delegate)
 
-    (define/public (get-url)
-      (object_getInstanceVariable webview "title"))
+    (define/public (get-title)
+      (tell #:type _NSString webview title))
+
+     (define/public (get-url)
+      (define url
+        (tell webview URL))
+      (tell #:type _NSString url absoluteString))
 
     (define/public (set-url given-url)
       (set! current-url given-url)
@@ -96,6 +102,9 @@
 
     (define/public (go-back)
       (tell webview goBack))
+
+    (define/public (reload)
+      (tell webview reload))
     
     ))
 
