@@ -1,4 +1,10 @@
 #lang racket/gui
+
+; This was my initial version. It is based on deprecated WebView from code found on:
+; https://gist.github.com/nickmain/5136923
+;
+; I've switched to WKWebView. Check wkwebkit.rkt
+
 (require framework)
 (require ffi/unsafe)
 (require ffi/unsafe/objc)

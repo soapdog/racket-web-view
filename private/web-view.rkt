@@ -1,10 +1,5 @@
 #lang racket
 
-; This was my initial version. It is based on deprecated WebView from code found on:
-; https://gist.github.com/nickmain/5136923
-;
-; I've switched to WKWebView.
-
 (require 
   racket/class 
   racket/gui
