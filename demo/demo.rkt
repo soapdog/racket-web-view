@@ -1,7 +1,6 @@
-#lang racket/gui
+#lang at-exp racket/gui
 
 (require web-view)
-
 
 (define frame
   (new frame% 
@@ -19,6 +18,15 @@
 
 (define (go-to-url button event)
   (send web-view set-url (send address-bar get-value)))
+
+(define test-html @string-append{
+<h1>It Works</h1>
+<p>This is a test of setting the HTML text of the browser to a string
+instead of a URL.</p>
+})
+
+(define (test-text button event)
+  (send web-view set-html-text test-html ""))
 
 (define (go-forward button event)
   (send web-view go-forward))
@@ -58,6 +66,12 @@
        [parent toolbar]
        [label "reload"]
        [callback reload]))
+
+(define test-text-button
+  (new button%
+       [parent toolbar]
+       [label "text"]
+       [callback test-text]))
 
 (define panel
   (new panel%

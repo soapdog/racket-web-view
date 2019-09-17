@@ -48,6 +48,9 @@
 
     (define/public (reload)
       (send webview reload))
+
+    (define/public (set-html-text text base-url)
+      (send webview set-html-text text base-url))
    
     ))
 

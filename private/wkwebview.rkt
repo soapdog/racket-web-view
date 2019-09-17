@@ -23,8 +23,6 @@
 
     (init parent [on-status-change #f])
 
-    (define current-url #f)
-
     (define-cstruct _NSPoint ([x _double*]
                               [y _double*]))
 
@@ -79,7 +77,6 @@
       (tell #:type _NSString url absoluteString))
 
     (define/public (set-url given-url)
-      (set! current-url given-url)
       (let* ([url-string (tell (tell NSString alloc)
                                initWithUTF8String: #:type _string given-url)]
              [url (tell NSURL URLWithString: url-string)]
@@ -102,7 +99,15 @@
 
     (define/public (reload)
       (tell webview reload))
-    
+
+    (define/public (set-html-text text base-url)
+      (let* ([url-string (tell (tell NSString alloc)
+                               initWithUTF8String: #:type _string base-url)]
+             [url (tell NSURL URLWithString: url-string)]
+             [html (tell (tell NSString alloc)
+                               initWithUTF8String: #:type _string text)])
+      (tell webview loadHTMLString: html baseURL: url)))
+
     ))
 
 (provide wk-web-view%)
