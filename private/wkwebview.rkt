@@ -83,6 +83,19 @@
 
     (define/public (on-status-change status)
       (displayln (format "webkit-view status change: ~a" status)))
+
+    (define/public (can-handle-url? given-url)
+       (let* ([url-string (tell (tell NSString alloc)
+                               initWithUTF8String: #:type _string given-url)])
+        (define ret (tell webview handlesURLScheme: url-string ))
+        (release url-string)
+        ret))
+
+    (define/public (go-forward)
+      (tell webview goForward))
+
+    (define/public (go-back)
+      (tell webview goBack))
     
     ))
 

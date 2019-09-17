@@ -20,6 +20,12 @@
 (define (go-to-url button event)
   (send web-view set-url (send address-bar get-value)))
 
+(define (go-forward button event)
+  (send web-view go-forward))
+
+(define (go-back button event)
+  (send web-view go-back))
+
 (define address-bar
   (new text-field%
        [parent toolbar]
@@ -30,6 +36,19 @@
        [parent toolbar]
        [label "Go"]
        [callback go-to-url]))
+
+
+(define go-back-button
+  (new button%
+       [parent toolbar]
+       [label "<"]
+       [callback go-back]))
+
+(define go-forward-button
+  (new button%
+       [parent toolbar]
+       [label ">"]
+       [callback go-forward]))
 
 (define panel
   (new panel%
@@ -44,6 +63,5 @@
   (new web-view%
        [parent panel]))
 
-(send web-view set-url "https://racket-lang.com")
-(send web-view get-url)
+(send web-view set-url "https://racket-lang.org")
 

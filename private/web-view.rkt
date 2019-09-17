@@ -38,7 +38,15 @@
     (define/public (get-url)
       (send webview get-url))
 
-        
+    (define/public (can-handle-url? url)
+      (send webview can-handle-url? url))
+
+    (define/public (go-forward)
+      (send webview go-forward))
+
+    (define/public (go-back)
+      (send webview go-back))
+   
     ))
 
 (provide web-view%)
