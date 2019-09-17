@@ -1,6 +1,8 @@
 web-view
 ========
 
+![Screenshot: web-view% in action](demo/demo.png)
+
 A Racket package to provide a `web-view%` control to applications based on Racket GUI Toolkit.
 
 ## What works
