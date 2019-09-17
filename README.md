@@ -34,7 +34,7 @@ You can run a demo with by loading `demo/demo.rkt`.
   (new web-view%
        [parent panel]))
 
-(send web-view set-url "https://racket-lang.com")
+(send web-view set-url "https://racket-lang.org")
 ```
 
 ---
