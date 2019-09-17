@@ -65,12 +65,16 @@
 
 
 (send frame show #t)
+(send frame create-status-line)
 
+(define (status-change status)
+  (send frame set-status-text status))
 
 ; needs to be after parent show so that we have parents dimensions
 (define web-view
   (new web-view%
-       [parent panel]))
+       [parent panel]
+       [on-status-change status-change]))
 
 (send web-view set-url "https://racket-lang.org")
 (send web-view get-url)

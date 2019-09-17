@@ -10,9 +10,7 @@
   (class object%
     (super-new)
 
-    (init parent)
-
-    (define (on-status-change status) (print status))
+    (init parent [on-status-change #f])
 
     (define current-operating-system (system-type 'os))
 
@@ -26,7 +24,8 @@
     
     (define webview
       (new wk-web-view%
-           [parent panel]))
+           [parent panel]
+           [on-status-change on-status-change]))
         
     
     (define/public (get-debug-info)

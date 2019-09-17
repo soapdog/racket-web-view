@@ -21,7 +21,7 @@
   (class object%
     (super-new)
 
-    (init parent)
+    (init parent [on-status-change #f])
 
     (define current-url #f)
 
@@ -59,16 +59,16 @@
       #:protocols (WKNavigationDelegate)
       []
       (- _void (webView: [_id view] didCommitNavigation: [_id navigation])
-         (displayln "commit!"))
+         (if (not (false? on-status-change)) (on-status-change "loading...") #f))
       (- _void (webView: [_id view] didFinishNavigation: [_id navigation])
-         (displayln "finish!")))
+         (if (not (false? on-status-change)) (on-status-change "page loaded.") #f)))
 
     (define delegate
       (tell (tell WebViewDelegate alloc) init))
 
     (tell (send parent get-client-handle) addSubview: webview)
 
-    (object_setInstanceVariable webview "navigationDelegate" delegate)
+    (tellv webview setNavigationDelegate: delegate)
 
     (define/public (get-title)
       (tell #:type _NSString webview title))
@@ -86,9 +86,6 @@
              [req (tell NSURLRequest requestWithURL: url)])
         (tell webview loadRequest: req)
         (release url-string)))
-
-    (define/public (on-status-change status)
-      (displayln (format "webkit-view status change: ~a" status)))
 
     (define/public (can-handle-url? given-url)
        (let* ([url-string (tell (tell NSString alloc)
