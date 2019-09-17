@@ -5,6 +5,8 @@ web-view
 
 A Racket package to provide a `web-view%` control to applications based on Racket GUI Toolkit.
 
+There is some minimal [documentation available](https://soapdog.github.io/racket-web-view/).
+
 ## What works
 
 You can create a `web-view%`, set its URL and the page loads. You can navigate as well.
