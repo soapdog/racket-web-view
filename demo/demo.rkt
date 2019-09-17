@@ -77,7 +77,6 @@ instead of a URL.</p>
   (new panel%
        [parent frame]))
 
-
 (send frame show #t)
 (send frame create-status-line)
 
