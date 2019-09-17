@@ -1,4 +1,4 @@
-web-view
+web-view%
 ========
 
 ![Screenshot: web-view% in action](demo/demo.png)
