@@ -36,3 +36,7 @@ You can run a demo with by loading `demo/demo.rkt`.
 
 (send web-view set-url "https://racket-lang.com")
 ```
+
+---
+
+<a href="http://racket-lang.org/"><img src="http://racket-lang.org/img/racket-logo.svg" width="80" height="80" /></a>
