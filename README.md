@@ -1,11 +1,13 @@
 web-view%
 ========
 
-![Screenshot: web-view% in action](demo/demo.png)
+![Screenshot: web-view% in action](https://github.com/soapdog/racket-web-view/raw/master/demo/demo.png)
 
 A Racket package to provide a `web-view%` control to applications based on Racket GUI Toolkit.
 
 There is some minimal [documentation available](https://soapdog.github.io/racket-web-view/).
+
+This repo is also available at [sourcehut](https://git.sr.ht/~soapdog/racket-web-view).
 
 ## What works
 
