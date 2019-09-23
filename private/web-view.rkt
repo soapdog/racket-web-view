@@ -10,7 +10,7 @@
   (class panel%
     (init parent [on-status-change #f])
 
-        (super-new [parent parent])
+    (super-new [parent parent])
 
     (define current-operating-system (system-type 'os))
 
@@ -23,7 +23,6 @@
            [parent this]
            [on-status-change on-status-change]))
         
-    
     (define/public (get-debug-info)
       current-operating-system)
 
