@@ -13,7 +13,6 @@
 (import-class NSView)
 (import-class NSString)
 (import-class NSObject)
-(import-class WKNavigation)
 (import-protocol WKNavigationDelegate)
 
 
@@ -59,10 +58,10 @@
       (- _void (webView: [_id view] didCommitNavigation: [_id navigation])
          (if (not (false? on-status-change)) (on-status-change "loading...") #f))
       (- _void (webView: [_id view] didFinishNavigation: [_id navigation])
-         (if (not (false? on-status-change)) (on-status-change "page loaded.") #f)))
+         (if (not (false? on-status-change)) (on-status-change "page loaded" ) #f)))
 
     (define delegate
-      (tell (tell WebViewDelegate alloc) init))
+      (tell (tell WebViewDelegate alloc) init)) 
 
     (tell (send parent get-client-handle) addSubview: webview)
 
@@ -107,6 +106,11 @@
              [html (tell (tell NSString alloc)
                                initWithUTF8String: #:type _string text)])
       (tell webview loadHTMLString: html baseURL: url)))
+
+    (define/public (on-size w h)
+      (tellv webview setFrame:
+            #:type _CGRect (make-CGRect (make-NSPoint 0 0) 
+                                        (make-NSSize w h))))
 
     ))
 

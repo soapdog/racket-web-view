@@ -73,21 +73,20 @@ instead of a URL.</p>
        [label "text"]
        [callback test-text]))
 
-(define panel
-  (new panel%
-       [parent frame]))
+(define (resize-browser w h)
+  (send web-view on-size w h))
 
 (send frame show #t)
 (send frame create-status-line)
 
 (define (status-change status)
-  (send frame set-status-text status))
+    (begin0 
+      (send frame set-status-text status)))
 
 ; needs to be after parent show so that we have parents dimensions
 (define web-view
   (new web-view%
-       [parent panel]
+       [parent frame]
        [on-status-change status-change]))
 
 (send web-view set-url "https://racket-lang.org")
-(send web-view get-url)

@@ -7,16 +7,12 @@
   "wkwebview.rkt")
 
 (define web-view%
-  (class object%
-    (super-new)
-
+  (class panel%
     (init parent [on-status-change #f])
 
-    (define current-operating-system (system-type 'os))
+        (super-new [parent parent])
 
-    (define panel
-      (new panel%
-           [parent parent]))
+    (define current-operating-system (system-type 'os))
 
     (if (not (member current-operating-system (list 'macosx)))
         (error 'not-implemented "web-view% not implemented for ~a" current-operating-system)
@@ -24,7 +20,7 @@
     
     (define webview
       (new wk-web-view%
-           [parent panel]
+           [parent this]
            [on-status-change on-status-change]))
         
     
@@ -33,6 +29,9 @@
 
     (define/public (set-url url)
       (send webview set-url url))
+
+    (define/override (on-size w h)
+      (send webview on-size w h))
 
     (define/public (get-url)
       (send webview get-url))
